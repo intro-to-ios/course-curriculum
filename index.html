@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iOS Development Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme"></button>
+
+<header>
+  <h1>iOS Development Course</h1>
+  <p>From Swift basics to career readiness — 14 lectures covering UIKit, SwiftUI, networking, ML, and more.</p>
+  <a href="https://ios-course.cornellappdev.com/" target="_blank" rel="noopener" class="course-link">Course website &rarr;</a>
+</header>
+
+<div id="graph-container">
+  <div class="graph-tooltip" id="tooltip"></div>
+  <div class="edge-label-tooltip" id="edgeTooltip"></div>
+  <div class="mobile-graph" id="mobileGraph"></div>
+</div>
+
+<div class="controls-bar">
+  <div class="search-wrap">
+    <span class="search-icon">&#x1F50D;</span>
+    <input type="text" id="searchInput" placeholder="Search lectures... (e.g. Codable, SwiftUI, MVVM)" aria-label="Search lectures">
+    <button class="search-clear" id="searchClear" aria-label="Clear search">&times;</button>
+  </div>
+  <button class="toggle-all-btn" id="toggleAllBtn">Expand all</button>
+</div>
+
+<div class="no-results" id="noResults">No lectures match your search.</div>
+
+<main id="content"></main>
+
+<div class="modal-overlay" id="lectureModal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
