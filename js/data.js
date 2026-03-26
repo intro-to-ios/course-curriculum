@@ -1,4 +1,4 @@
-export const MAX_AVAILABLE_LECTURE = 4;
+export const MAX_AVAILABLE_LECTURE = 5;
 
 export function isLocked(lid) {
   return parseInt(lid.replace('l', '')) > MAX_AVAILABLE_LECTURE;
