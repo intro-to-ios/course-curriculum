@@ -12,6 +12,21 @@ window.addEventListener('resize', () => {
   resizeTimer = setTimeout(renderGraph, 150);
 });
 
+// Hamburger menu
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+hamburgerBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = hamburgerMenu.classList.toggle('open');
+  hamburgerBtn.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', (e) => {
+  if (!hamburgerMenu.contains(e.target) && e.target !== hamburgerBtn) {
+    hamburgerMenu.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
 // Init
 initTheme();
 initModal();

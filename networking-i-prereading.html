@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prereading: Networking I</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --accent: #C43B2E;
+    --accent-light: #FFF0EE;
+    --code-bg: #1E1E2E;
+    --code-text: #CDD6F4;
+    --border: #E5E5E0;
+    --card-bg: #FFFFFF;
+    --tag-bg: #F0EDEB;
+    --keyword: #CBA6F7;
+    --string: #A6E3A1;
+    --type: #89DCEB;
+    --comment: #6C7086;
+    --number: #FAB387;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 2rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .header-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.6rem;
+    color: var(--text);
+  }
+
+  p { margin-bottom: 1rem; }
+
+  .concept-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+  }
+
+  .concept-card.accent {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+  }
+
+  .concept-card h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .concept-card p:last-child { margin-bottom: 0; }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    background: var(--tag-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+  }
+
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.65;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+  .kw { color: var(--keyword); }
+  .str { color: var(--string); }
+  .tp { color: var(--type); }
+  .cm { color: var(--comment); font-style: italic; }
+  .num { color: var(--number); }
+
+  .status-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+  }
+
+  .status-table th {
+    text-align: left;
+    padding: 0.6rem 1rem;
+    background: var(--tag-bg);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .status-table td {
+    padding: 0.55rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .status-table .code-col {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    width: 60px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15em 0.6em;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .tag.green { background: #DEF7E5; color: #1B7A3D; }
+  .tag.red { background: #FDDDD9; color: #A13126; }
+  .tag.yellow { background: #FFF3D0; color: #8A6D00; }
+  .tag.blue { background: #DBE9FF; color: #2456A2; }
+
+  .tldr {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--tag-bg);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .tldr strong { color: var(--accent); }
+
+  .footer-note {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-align: center;
+    padding-bottom: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.7rem; }
+    main { padding: 1.25rem; }
+    pre { padding: 1rem; font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-meta">Intro to iOS Development &middot; SP26 &middot; Prereading</div>
+  <h1>Networking I</h1>
+  <div class="subtitle">HTTP requests, JSON, async/await, and Codable</div>
+</div>
+
+<main>
+
+<div class="tldr">
+  <strong>TL;DR &mdash;</strong> Most apps talk to a server. They do this over HTTP, sending requests and getting back JSON. In Swift, we use <code>URLSession</code> with <code>async/await</code> to make these calls without freezing the UI, and the <code>Codable</code> protocol to convert JSON into Swift structs.
+</div>
+
+<h2>Clients &amp; Servers</h2>
+
+<p>
+  A <strong>client</strong> is anything that asks for data&mdash;your iPhone, a laptop, a browser. A <strong>server</strong> is what answers. When you open Instagram, your phone (client) asks Instagram&rsquo;s server for your feed, and the server sends back the posts.
+</p>
+
+<p>
+  Apps that rely on a server include social media, multiplayer games, and campus apps like Eatery. Apps that <em>don&rsquo;t</em> need one&mdash;like the Camera app or Notes&mdash;work entirely on-device.
+</p>
+
+<div class="concept-card accent">
+  <h4>Key Takeaway</h4>
+  <p>If your app shows data that lives somewhere else (another user's post, a menu, a leaderboard), it needs networking.</p>
+</div>
+
+
+<h2>HTTP Requests</h2>
+
+<p>
+  HTTP (HyperText Transfer Protocol) is the language clients and servers use to talk. A client sends a <strong>request</strong>, and the server sends back a <strong>response</strong> with a status code.
+</p>
+
+<h3>Request Methods</h3>
+<p>
+  The four most common methods are <code>GET</code> (read data), <code>POST</code> (create data), <code>PUT</code> (update data), and <code>DELETE</code> (remove data). In this lecture we&rsquo;ll focus on <code>GET</code> and <code>POST</code>.
+</p>
+
+<h3>Status Codes</h3>
+<p>Every HTTP response comes with a numeric status code. Here&rsquo;s what each range means:</p>
+
+<table class="status-table">
+  <tr><th class="code-col">Code</th><th>Category</th><th>What it means</th></tr>
+  <tr><td class="code-col">1XX</td><td><span class="tag yellow">Info</span></td><td>Request received, still processing</td></tr>
+  <tr><td class="code-col">2XX</td><td><span class="tag green">Success</span></td><td>Everything worked (200 OK is the most common)</td></tr>
+  <tr><td class="code-col">3XX</td><td><span class="tag blue">Redirect</span></td><td>Resource moved somewhere else</td></tr>
+  <tr><td class="code-col">4XX</td><td><span class="tag red">Client Error</span></td><td>Something wrong with your request (404 = not found)</td></tr>
+  <tr><td class="code-col">5XX</td><td><span class="tag red">Server Error</span></td><td>Server broke trying to handle a valid request</td></tr>
+</table>
+
+
+<h2>JSON</h2>
+
+<p>
+  JSON (JavaScript Object Notation) is the standard format for sending data over HTTP. It&rsquo;s just key-value pairs&mdash;similar to a Swift dictionary. Keys are always strings; values can be strings, numbers, booleans, arrays, objects, or <code>null</code>.
+</p>
+
+<pre><code>{
+  <span class="str">"age"</span>: <span class="num">19</span>,
+  <span class="str">"classes"</span>: [<span class="str">"CS 1998"</span>, <span class="str">"PHYS 2213"</span>],
+  <span class="str">"major"</span>: <span class="str">"Info Sci"</span>,
+  <span class="str">"name"</span>: <span class="str">"Vin Bui"</span>
+}</code></pre>
+
+<p>
+  Notice how this maps almost directly to a Swift struct with properties <code>age: Int</code>, <code>classes: [String]</code>, <code>major: String</code>, and <code>name: String</code>. That&rsquo;s the whole idea&mdash;JSON is the bridge between the server&rsquo;s data and your Swift model.
+</p>
+
+
+<h2>Networking in Swift</h2>
+
+<h3>Why async/await?</h3>
+<p>
+  Network requests take time&mdash;maybe milliseconds, maybe seconds. If we waited synchronously, the entire UI would freeze. Swift&rsquo;s <code>async/await</code> (introduced in Swift 5.5) lets us &ldquo;pause&rdquo; a function in the background until the data arrives, without blocking the main thread.
+</p>
+
+<div class="concept-card">
+  <h4>Analogy</h4>
+  <p>Think of it like ordering food at a restaurant. You place your order (send the request), then keep chatting with friends (the app stays responsive) until the waiter brings the food back (the response arrives).</p>
+</div>
+
+<h3>A GET Request</h3>
+<p>Here&rsquo;s the basic pattern for fetching data from a server:</p>
+
+<pre><code><span class="kw">func</span> fetchPosts() <span class="kw">async throws</span> -> [<span class="tp">Post</span>] {
+    <span class="kw">let</span> url = <span class="tp">URL</span>(string: <span class="str">"https://api.example.com/posts"</span>)!
+    <span class="kw">let</span> (data, _) = <span class="kw">try await</span> <span class="tp">URLSession</span>.shared.data(from: url)
+    <span class="kw">let</span> posts = <span class="kw">try</span> <span class="tp">JSONDecoder</span>().decode([<span class="tp">Post</span>].<span class="kw">self</span>, from: data)
+    <span class="kw">return</span> posts
+}</code></pre>
+
+<p>Three steps happen here:</p>
+<p>
+  <strong>1.</strong> Build a <code>URL</code> from a string. <strong>2.</strong> Use <code>URLSession.shared.data(from:)</code> to fire the request and <code>await</code> the response. <strong>3.</strong> Decode the raw <code>Data</code> into your Swift model with <code>JSONDecoder</code>.
+</p>
+
+<h3>Calling it from a View</h3>
+<pre><code><span class="kw">struct</span> <span class="tp">FeedView</span>: <span class="tp">View</span> {
+    <span class="kw">@State private var</span> posts: [<span class="tp">Post</span>] = []
+
+    <span class="kw">var</span> body: <span class="kw">some</span> <span class="tp">View</span> {
+        <span class="tp">List</span>(posts, id: \.<span class="kw">username</span>) { post <span class="kw">in</span>
+            <span class="tp">Text</span>(<span class="str">"\(post.username) posted a new photo!"</span>)
+        }
+        .task {
+            <span class="kw">do</span> {
+                posts = <span class="kw">try await</span> fetchPosts()
+            } <span class="kw">catch</span> {
+                print(<span class="str">"Failed to fetch posts: \(error)"</span>)
+            }
+        }
+    }
+}</code></pre>
+
+<p>
+  The <code>.task</code> modifier kicks off the async work when the view appears. Because it runs asynchronously, the list can render immediately (empty at first) and populate once the data arrives.
+</p>
+
+
+<h2>Codable</h2>
+
+<p>
+  <code>Codable</code> is a protocol (actually a typealias for <code>Decodable &amp; Encodable</code>) that tells Swift how to convert between JSON and your structs. If the JSON keys match your property names, you get automatic decoding for free:
+</p>
+
+<pre><code><span class="kw">struct</span> <span class="tp">Student</span>: <span class="tp">Codable</span> {
+    <span class="kw">let</span> age: <span class="tp">Int</span>
+    <span class="kw">let</span> classes: [<span class="tp">String</span>]
+    <span class="kw">let</span> firstName: <span class="tp">String</span>
+    <span class="kw">let</span> lastName: <span class="tp">String</span>
+    <span class="kw">let</span> major: <span class="tp">String</span>
+}</code></pre>
+
+<div class="concept-card accent">
+  <h4>Watch Out: snake_case vs. camelCase</h4>
+  <p>
+    APIs often use <code>snake_case</code> keys (e.g. <code>"first_name"</code>) while Swift uses <code>camelCase</code> (e.g. <code>firstName</code>). To handle this automatically, set the decoder&rsquo;s key strategy:
+  </p>
+  <pre style="margin-top:0.75rem; margin-bottom:0;"><code><span class="kw">let</span> decoder = <span class="tp">JSONDecoder</span>()
+decoder.keyDecodingStrategy = .convertFromSnakeCase</code></pre>
+</div>
+
+
+<h2>Before Lecture</h2>
+
+<p>Come to lecture with a rough mental model of these ideas. You don’t need to memorize any syntax—we’ll live-code everything together and do a Postman demo so you can see making server requests in action. Some questions to think about::</p>
+
+<div class="concept-card">
+  <h4>Questions to Consider</h4>
+  <p><strong>1.</strong> What apps on your phone probably make HTTP requests? What data are they fetching?</p>
+  <p><strong>2.</strong> If <code>URLSession.shared.data(from:)</code> is <code>async</code>, what would happen if it <em>weren&rsquo;t</em> and you called it on the main thread?</p>
+  <p style="margin-bottom:0;"><strong>3.</strong> Given a JSON object with keys <code>"user_id"</code> and <code>"display_name"</code>, what would your Swift struct look like?</p>
+</div>
+
+</main>
+
+<div class="footer-note">
+  Intro to iOS Development &middot; Cornell AppDev &middot; Spring 2026
+</div>
+
+</body>
+</html>
